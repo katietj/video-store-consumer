@@ -37,7 +37,6 @@ class Movie extends React.Component {
 
     render() {
         const movie = this.props;
-        console.log(this.state.match.url);
         return (
             <div>
                 {movie.title}

@@ -65,11 +65,11 @@ class Router extends React.Component {
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
-<<<<<<< HEAD
+
             <Route path="/library" render={() => <Library getMovie={this.getMovie} />} />
-=======
+
             <Route path="/library" render={() => <Library getMovie={this.getMovie} path="/library" />} />
->>>>>>> ec1aa8012afaa3ea888f3bca34913444ad7abdec
+
             <Route path="/customers" render={() => <Customers getCustomer={this.getCustomer} />} />
             <Route component={NotFound} />
           </Switch>
