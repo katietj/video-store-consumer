@@ -9,6 +9,7 @@ class Search extends React.Component {
         this.state = {
             query: "",
             movies: [],
+            errorMessage: "",
         }
     }
 
@@ -16,32 +17,20 @@ class Search extends React.Component {
         this.setState({
             query: event.target.value,
         })
-    }
 
-    onFormSubmit = (event) => {
-        event.preventDefault();
+        const url = `http://localhost:3000/movies?query=${this.state.query}`;
 
-        const query = this.state.query;
-        const url = `http://localhost:3000/movies?query=${query}`;
-
-        axios.get(url)
-            .then((response) => {
-                console.log(response.data);
-                this.setState({
-                    movies: response.data,
-                })
+        axios
+          .get(url)
+          .then(response => {
+            this.setState({ movies: response.data });
+          })
+          .catch(error => {
+            this.setState({
+                errorMessage: error.message
             })
-            .catch((error) => {
-                console.log(error.message);
-            })
-
-        this.setState({
-            query: '',
-        });
-
-        
+          });
     }
-
 
     render() {
         const allMovies = this.state.movies.map((movie) => {
@@ -52,10 +41,10 @@ class Search extends React.Component {
         return (
             <div>
                 <h2>Search</h2>
-                <form onSubmit={this.onFormSubmit}>
-                    <input name="search" id="search" placeholder="Search" value={this.state.query} onChange={this.onQueryChange} />
-                    <input type="submit" value="Go" />
-                </form>
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+                <section>
+                    <input name="search-bar" id="search" placeholder="Search" value={this.state.query} onChange={this.onQueryChange} />
+                </section>
                 { allMovies }
             </div>
         )
