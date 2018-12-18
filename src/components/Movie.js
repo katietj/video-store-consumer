@@ -23,7 +23,7 @@ class Movie extends React.Component {
         }
 
         axios.post(url, movie)
-            .then((response) => {
+            .then(()=> {
                 this.setState({
                     msg: "Successfully added movie"
                 })
@@ -36,7 +36,7 @@ class Movie extends React.Component {
     }
 
     selectMovie = () => {
-        this.props.getMovie(this.props.title);
+        this.props.getMovie(this.props.id, this.props.title);
     }
 
     render() {

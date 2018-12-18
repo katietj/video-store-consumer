@@ -11,21 +11,25 @@ class Router extends React.Component {
     super(props);
 
     this.state = {
-      currentMovie: "",
-      currentCustomer: ""
+      movieId: null,
+      customerId: null,
+      currentMovieTitle: "",
+      currentCustomerName: ""
     };
   }
 
-  getMovie = (title) => {
+  getMovie = (id, title) => {
 
     this.setState({
-      currentMovie: title,
+      currentMovieTitle: title,
+      movieId: id
     })
   }
 
-  getCustomer = (customer) => {
+  getCustomer = (id,customer) => {
     this.setState({
-      currentCustomer: customer,
+      currentCustomerName: customer,
+      customerId: id
     })
   }
 
@@ -48,14 +52,14 @@ class Router extends React.Component {
               </li>
               <li>
                 <p>Selected Movie:</p>
-                {this.state.currentMovie && <p>
-                    {this.state.currentMovie}
+                {this.state.currentMovieTitle && <p>
+                    {this.state.currentMovieTitle}
                   </p>}
               </li>
               <li>
                 <p>Selected Customer:</p>
-                {this.state.currentCustomer && <p>
-                    {this.state.currentCustomer}
+                {this.state.currentCustomerName && <p>
+                    {this.state.currentCustomerName}
                   </p>}
               </li>
               <li>
