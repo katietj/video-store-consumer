@@ -32,7 +32,7 @@ class Movie extends React.Component {
             })
             .catch((error) => {
                 this.setState({
-                    msg: "Could not add"
+                    msg: error.message
                 })
             })
     }
