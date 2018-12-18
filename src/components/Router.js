@@ -6,7 +6,29 @@ import Library from './Library';
 import Search from './Search';
 import NotFound from './NotFound';
 
-const Router = () => {
+class Router extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentMovie: "",
+      currentCustomer: ""
+    };
+  }
+
+  getMovie = (movie) => {
+    this.setState({
+      currentMovie: movie,
+    })
+  }
+
+  getCustomer = (customer) => {
+    this.setState({
+      currentCustomer: customer,
+    })
+  }
+
+  render() {
     return <BrowserRouter>
         <div>
           <nav>
@@ -24,10 +46,16 @@ const Router = () => {
                 <Link to="/customers">Customers</Link>
               </li>
               <li>
-                <button>Selected Movie</button>
+                <p>Selected Movie:</p>
+                {this.state.currentMovie && <p>
+                    {this.state.currentMovie}
+                  </p>}
               </li>
               <li>
-                <button>Selected Customer</button>
+                <p>Selected Customer:</p>
+                {this.state.currentCustomer && <p>
+                    {this.state.currentCustomer}
+                  </p>}
               </li>
               <li>
                 <button>Check Out</button>
@@ -37,12 +65,13 @@ const Router = () => {
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
-            <Route path="/library" component={Library} />
-            <Route path="/customers" component={Customers} />
+            <Route path="/library" render={(props) => <Library getMovie={this.getMovie} />} />
+            <Route path="/customers" render={(props) => <Customers getCustomer={this.getCustomer} />} />
             <Route component={NotFound} />
           </Switch>
         </div>
       </BrowserRouter>;
-}
+  }
+} 
 
 export default Router;
