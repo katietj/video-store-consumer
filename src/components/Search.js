@@ -46,9 +46,9 @@ class Search extends React.Component {
     render() {
         const allMovies = this.state.movies.map((movie) => {
             return <Movie key={movie.external_id}
-                {...movie}/>
+                {...movie} path="/search"/>
         });
-        console.log(this.props.match.path);
+
         return (
             <div>
                 <h2>Search</h2>

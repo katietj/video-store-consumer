@@ -17,7 +17,7 @@ class Movie extends React.Component {
         const movie = {
             title,
             external_id,
-            image_url,
+            image_url: image_url.slice(31),
             release_date,
             overview
         }
@@ -35,25 +35,31 @@ class Movie extends React.Component {
             })
     }
 
+    selectMovie = () => {
+        this.props.getMovie(this.props.title);
+    }
+
     render() {
-        const movie = this.props;
+        const {title, image_url, path} = this.props;
         return (
             <div>
-                {movie.title}
-                {movie.image}
-                <button onClick={this.addToLibrary}>Add</button>
                 {this.state.msg && <h3>{this.state.msg}</h3>}
+                <img src={image_url} alt={title} />
+                {path === '/search' ? <button onClick={this.addToLibrary}>Add to Library</button> : <button onClick={this.selectMovie}>Select Movie</button> }
             </div>
         )
     }
 }
 
 Movie.propTypes = {
-  title: PropTypes.string,
-  external_id: PropTypes.string,
-  overview: PropTypes.string,
-  release_date: PropTypes.string,
-  image_url: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  external_id: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  release_date: PropTypes.string.isRequired,
+  image_url: PropTypes.string.isRequired,
+  getMovie: PropTypes.func.isRequired,
+  path: PropTypes.string.isRequired,
 };
 
 export default Movie;

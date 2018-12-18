@@ -16,9 +16,10 @@ class Router extends React.Component {
     };
   }
 
-  getMovie = (movie) => {
+  getMovie = (title) => {
+
     this.setState({
-      currentMovie: movie,
+      currentMovie: title,
     })
   }
 
@@ -65,11 +66,7 @@ class Router extends React.Component {
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
-
             <Route path="/library" render={() => <Library getMovie={this.getMovie} />} />
-
-            <Route path="/library" render={() => <Library getMovie={this.getMovie} path="/library" />} />
-
             <Route path="/customers" render={() => <Customers getCustomer={this.getCustomer} />} />
             <Route component={NotFound} />
           </Switch>
