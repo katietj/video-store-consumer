@@ -10,11 +10,8 @@ class Movie extends React.Component {
         }
     }
 
-    
     addToLibrary = () => {
         const url = `http://localhost:3000/movies`;
-        console.log("Adding...")
-        console.log(this.props.title);
         const {title, external_id, image_url, release_date, overview} = this.props
         const movie = {
             title,
@@ -39,9 +36,11 @@ class Movie extends React.Component {
 
     render() {
         const movie = this.props;
+        console.log(this.state.match.url);
         return (
             <div>
                 {movie.title}
+                {movie.image}
                 <button onClick={this.addToLibrary}>Add</button>
                 {this.state.msg && <h3>{this.state.msg}</h3>}
             </div>

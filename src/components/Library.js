@@ -1,9 +1,15 @@
 import React from "react";
 
-const Library = () => (
-  <div>
-    <h2>Library</h2>
-  </div>
-);
+class Library extends React.Component {
+    render() {
+        console.log(this.props.match.path);
+        return (
+            <div>
+                <h2>Library</h2>
+            </div>
+        )
+    }
+}
+
 
 export default Library;

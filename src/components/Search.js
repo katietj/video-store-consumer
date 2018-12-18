@@ -48,7 +48,7 @@ class Search extends React.Component {
             return <Movie key={movie.external_id}
                 {...movie}/>
         });
-        
+        console.log(this.props.match.path);
         return (
             <div>
                 <h2>Search</h2>

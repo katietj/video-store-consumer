@@ -4,14 +4,18 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 160px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color:#F5F3D9;
+  height: 300px;
   padding: 20px;
-  color: white;
+  color: #F14742;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .App-title {
