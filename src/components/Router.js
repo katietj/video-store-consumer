@@ -5,6 +5,7 @@ import Customers from './Customers';
 import Library from './Library';
 import Search from './Search';
 import NotFound from './NotFound';
+import axios from 'axios';
 
 class Router extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class Router extends React.Component {
       movieId: null,
       customerId: null,
       currentMovieTitle: "",
-      currentCustomerName: ""
+      currentCustomerName: "",
+      msg: ""
     };
   }
 
@@ -32,6 +34,38 @@ class Router extends React.Component {
       customerId: id
     })
   }
+
+  rentMovie = () => {
+    if (this.state.movieId && this.state.customerId){
+        let dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 7);
+          const { currentMovieTitle, customerId, movieId} = this.state
+          const url = `http://localhost:3000/rentals/${currentMovieTitle}/check-out`;
+
+          const rental = {
+              movie_id: movieId,
+              customer_id: customerId,
+              due_date: dueDate,
+            }
+
+          axios.post(url, rental)
+              .then(()=> {
+                console.log("Successfully added rental")
+                  // this.setState({
+                  //     msg: "Successfully added rental"
+                  // })
+              })
+              .catch((error) => {
+                console.log(`Could not add: ${error.message}`)
+                  // this.setState({
+                  //     msg: error.message
+                  // })
+              })
+      }
+
+    }
+
+
 
   render() {
     return <BrowserRouter>
@@ -63,7 +97,7 @@ class Router extends React.Component {
                   </p>}
               </li>
               <li>
-                <button>Check Out</button>
+                <button onClick={this.rentMovie}>Check Out</button>
               </li>
             </ul>
           </nav>
@@ -78,5 +112,6 @@ class Router extends React.Component {
       </BrowserRouter>;
   }
 }
+
 
 export default Router;
