@@ -7,7 +7,8 @@ class Library extends React.Component {
       super(props);
 
       this.state = {
-          movies: []
+          movies: [],
+          errorMessage: ""
       }
   }
 
@@ -26,7 +27,6 @@ class Library extends React.Component {
 
       })
         .catch((error) =>{
-          console.log(error.message);
 
           this.setState({
             errorMessage: error.message,
@@ -34,12 +34,13 @@ class Library extends React.Component {
       })
     }
     render() {
-        console.log(this.props.path);
 
         return (
             <div>
                 <h2>Library</h2>
+                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
                 { this.state.movies }
+
             </div>
         )
     }
