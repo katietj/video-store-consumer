@@ -73,9 +73,9 @@ class Router extends React.Component {
           axios.post(url, rental)
               .then(()=> {
                   // let customerList = [...this.state.customers];
-   
+
                   // let customer = this.state.customers.find((person) => person.props.id === this.state.customerId);
-            
+
 
                   this.setState({
                       msg: "Successfully added rental",
@@ -97,6 +97,7 @@ class Router extends React.Component {
 
 
   render() {
+    const buttonClass = this.state.currentCustomerName && this.state.currentMovieTitle ? 'buttonDisplay' : 'buttonNonDisplay';
     return <BrowserRouter>
         <div>
           <nav className="flex-nav">
@@ -126,7 +127,7 @@ class Router extends React.Component {
                   </span>}
               </li>
               <li className="text">
-                <button onClick={this.rentMovie}>Check Out</button>
+                <button onClick={this.rentMovie} className={buttonClass}>Check Out</button>
               </li>
             </ul>
           </nav>
