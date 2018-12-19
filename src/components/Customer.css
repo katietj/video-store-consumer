@@ -38,3 +38,11 @@
     padding: 10px;
     flex: 1;
 }
+
+.select_button{
+font-size: 125%;
+color: white;
+background-color: #7E7F9A;
+border-radius: 4px;
+text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}

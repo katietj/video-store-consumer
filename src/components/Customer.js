@@ -16,7 +16,7 @@ const Customer = (props) => {
         Movies Checked Out: {movies_checked_out_count}
       </div>
       <div className="select_customer">
-        <button onClick={onClicked}>
+        <button className="select_button" onClick={onClicked}>
           Select Customer
         </button>
       </div>
