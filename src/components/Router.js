@@ -137,7 +137,7 @@ class Router extends React.Component {
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
             <Route path="/library" render={() => <Library getMovie={this.getMovie} />} />
-            <Route path="/customers" render={() => <Customers getCustomerList={this.getCustomerList} customers={this.state.customers}/>} />
+            <Route path="/customers" render={() => <Customers getCustomerList={this.getCustomerList} customers={this.state.customers} />} />
             <Route component={NotFound} />
           </Switch>
         </div>
