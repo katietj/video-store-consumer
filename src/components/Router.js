@@ -144,10 +144,10 @@ class Router extends React.Component {
             </ul>
           </nav>
           <div>
-            {this.state.msg && 
+            {this.state.msg &&
               <div className="errors_container">
                 <h3>{this.state.msg}</h3>
-                <button onClick={this.closeMessage}>x</button>
+                <button className="closeError"onClick={this.closeMessage}><strong>&#10007;</strong></button>
               </div>
             }
           </div>

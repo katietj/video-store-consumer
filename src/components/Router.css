@@ -99,4 +99,21 @@ outline: none;
 
 .errors_container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.closeError{
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 125%
+}
+
+.closeError:hover{
+  cursor: pointer;
+  border: 1px white solid;
+
 }
