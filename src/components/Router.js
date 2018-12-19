@@ -7,6 +7,7 @@ import Library from './Library';
 import Search from './Search';
 import NotFound from './NotFound';
 import axios from 'axios';
+import "./Router.css";
 
 class Router extends React.Component {
   constructor(props) {
@@ -98,7 +99,7 @@ class Router extends React.Component {
   render() {
     return <BrowserRouter>
         <div>
-          <nav>
+          <nav className="flex-nav">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -112,19 +113,19 @@ class Router extends React.Component {
               <li>
                 <Link to="/customers">Customers</Link>
               </li>
-              <li>
+              <li className="text">
                 <p>Selected Movie:</p>
-                {this.state.currentMovieTitle && <p>
+                {this.state.currentMovieTitle && <span>
                     {this.state.currentMovieTitle}
-                  </p>}
+                  </span>}
               </li>
-              <li>
+              <li className="text">
                 <p>Selected Customer:</p>
-                {this.state.currentCustomerName && <p>
+                {this.state.currentCustomerName && <span>
                     {this.state.currentCustomerName}
-                  </p>}
+                  </span>}
               </li>
-              <li>
+              <li className="text">
                 <button onClick={this.rentMovie}>Check Out</button>
               </li>
             </ul>
