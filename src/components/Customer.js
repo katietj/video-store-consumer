@@ -12,7 +12,6 @@ const Customer = (props) => {
   return <section className="customer_card">
       <div className="customer_name"><strong>{name}</strong></div>
       <div className="customer_movies">
-        {" "}
         Movies Checked Out: {movies_checked_out_count}
       </div>
       <div className="select_customer">

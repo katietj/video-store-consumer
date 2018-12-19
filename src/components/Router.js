@@ -126,13 +126,13 @@ class Router extends React.Component {
               </li>
               <li className="text">
                 <p>Selected Movie:</p>
-                {this.state.currentMovieTitle && <span>
+                {this.state.currentMovieTitle && <span className="current_style">
                     {this.state.currentMovieTitle}
                   </span>}
               </li>
               <li className="text">
                 <p>Selected Customer:</p>
-                {this.state.currentCustomerName && <span>
+                {this.state.currentCustomerName && <span className="current_style">
                     {this.state.currentCustomerName}
                   </span>}
               </li>
@@ -143,14 +143,12 @@ class Router extends React.Component {
               </li>
             </ul>
           </nav>
-          <div>
-            {this.state.msg &&
-              <div className="errors_container">
-                <h3>{this.state.msg}</h3>
-                <button className="closeError"onClick={this.closeMessage}><strong>&#10007;</strong></button>
-              </div>
-            }
-          </div>
+          {this.state.msg &&
+            <div className="errors_container">
+              <h3>{this.state.msg}</h3>
+              <button className="closeError"onClick={this.closeMessage}><strong>&#10007;</strong></button>
+            </div>
+          }
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/search" render={() => <Search setMessages={this.setMessages} />} />

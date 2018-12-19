@@ -26,9 +26,6 @@ class Library extends React.Component {
       })
       .catch((error) =>{
         this.props.setMessages(error.message);
-      //   this.setState({
-      //     errorMessage: error.message,
-      // })
     })
   }
 
@@ -36,9 +33,8 @@ class Library extends React.Component {
   render() {
 
       return (
-          <section>
+          <section className="library_container">
               <h2 className="library_title">Library</h2>
-              {/* {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>} */}
               <section className="movies_container">
                 {this.state.movies}
               </section>

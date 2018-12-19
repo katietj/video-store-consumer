@@ -1,9 +1,8 @@
 .library_title {
     text-align: center;
     padding: 1rem;
-    color: white;
-    font-size: 2rem;
-    background-color: black;
+    color:white;
+    font-size: 3rem;
 }
 
 .movies_container {

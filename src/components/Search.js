@@ -28,9 +28,6 @@ class Search extends React.Component {
                 this.setState({ movies: response.data });
             })
             .catch(error => {
-                // this.setState({
-                //     errorMessage: error.message
-                // })
                 this.props.setMessages(error.message);
             });
     }
@@ -39,7 +36,6 @@ class Search extends React.Component {
     onQueryChange = (event) => {
         this.setState({
             query: event.target.value,
-            // errorMessage: "",
         }, () => this.showMovies());
     }
 
@@ -52,7 +48,6 @@ class Search extends React.Component {
         return (
             <div className="search_container">
                 <h2 className="search_title">Search</h2>
-                {/* {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>} */}
                 <section className="search_bar">
                     <input name="search-bar" id="search" placeholder="Search" value={this.state.query} onChange={this.onQueryChange} />
                 </section>
