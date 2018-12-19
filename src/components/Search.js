@@ -7,29 +7,38 @@ class Search extends React.Component {
         super(props);
         
         this.state = {
-            query: "",
+            query: '',
             movies: [],
             errorMessage: "",
         }
     }
 
+    showMovies = () => {
+        let url = `http://localhost:3000/movies`;
+        const re = /^[A-Za-z0-9][A-Za-z0-9]*/i;
+        
+        if (this.state.query.trim().length !== 0 && this.state.query.match(re)) {
+          url += `?query=${this.state.query}`;
+        }
+
+        axios
+            .get(url)
+            .then(response => {
+                this.setState({ movies: response.data });
+            })
+            .catch(error => {
+                this.setState({
+                    errorMessage: error.message
+                })
+            });
+    }
+
+
     onQueryChange = (event) => {
         this.setState({
             query: event.target.value,
-        })
-
-        const url = `http://localhost:3000/movies?query=${this.state.query}`;
-
-        axios
-          .get(url)
-          .then(response => {
-            this.setState({ movies: response.data });
-          })
-          .catch(error => {
-            this.setState({
-                errorMessage: error.message
-            })
-          });
+            errorMessage: "",
+        }, () => this.showMovies());
     }
 
     render() {

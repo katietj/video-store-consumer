@@ -52,13 +52,13 @@ class Movie extends React.Component {
 }
 
 Movie.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string.isRequired,
   external_id: PropTypes.number.isRequired,
   overview: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
+  release_date: PropTypes.string,
   image_url: PropTypes.string.isRequired,
-  getMovie: PropTypes.func.isRequired,
+  getMovie: PropTypes.func,
   path: PropTypes.string.isRequired,
 };
 
