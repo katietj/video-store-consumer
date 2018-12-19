@@ -40,7 +40,7 @@ img {
 }
 
 .movie_image_library:hover, .movie_button:hover {
-    box-shadow: 0 0 3pt 2pt red;
+    box-shadow: 0 0 3pt 2pt black;
     cursor: pointer;
 }
 

@@ -41,7 +41,7 @@
 			<clipPath id="SVGID_5_">
 				<use xlink:href="#SVGID_4_"  style="overflow:visible;"/>
 			</clipPath>
-			
+
 				<line style="clip-path:url(#SVGID_5_);fill:none;stroke:#231F20;stroke-width:3.3456;" x1="85.613" y1="32.22" x2="70.149" y2="87.837"/>
 		</g>
 	</g>
@@ -73,7 +73,7 @@
 			<clipPath id="SVGID_9_">
 				<use xlink:href="#SVGID_8_"  style="overflow:visible;"/>
 			</clipPath>
-			
+
 				<line style="clip-path:url(#SVGID_9_);fill:none;stroke:#231F20;stroke-width:3.3456;" x1="248.887" y1="140.089" x2="203.796" y2="176.131"/>
 		</g>
 	</g>
