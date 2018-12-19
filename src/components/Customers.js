@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import './Customers.css';
 
 const Customers = props => {
   return (
     <div>
-      <h2>Customers</h2>
+      <h2 className="customer_title">Customers</h2>
       {props.getCustomerList()}
       {props.customers}
     </div>

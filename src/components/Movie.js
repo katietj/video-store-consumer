@@ -41,10 +41,16 @@ class Movie extends React.Component {
     }
 
     render() {
-        const {title, image_url, path} = this.props;
+        const {title, image_url, path, overview} = this.props;
         return <section className="individual_movie">
             {this.state.msg && <h3>{this.state.msg}</h3>}
-            <img src={image_url} alt={title} className={path === '/library' ? "movie_image_library" : "movie_image_search"} onClick={path === '/library' ? this.selectMovie : undefined}/>
+            <img src={image_url} alt={title} className={path === "/library" ? "movie_image_library" : "movie_image_search"} onClick={path === "/library" ? this.selectMovie : undefined} />
+            <section className="movie_description_container">
+              <div className="overview">
+                <p><strong>{title}</strong></p>
+                {overview}
+              </div>
+            </section>
             {path === "/search" && <button onClick={this.addToLibrary} className="movie_button">
                 Add to Library
               </button>}

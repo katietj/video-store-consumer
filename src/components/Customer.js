@@ -1,6 +1,6 @@
 import React from 'react';
-
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import './Customer.css';
 
 const Customer = (props) => {
   const { id, name, movies_checked_out_count } = props;
@@ -9,13 +9,18 @@ const Customer = (props) => {
     props.getCustomer(id, name);
   }
 
-  return(
-    <div>
-      <p> {name}</p>
-      <p> {movies_checked_out_count}</p>
-      <button onClick={onClicked}>Select Customer</button>
-    </div>
-  )
+  return <section className="customer_card">
+      <div className="customer_name"><strong>{name}</strong></div>
+      <div className="customer_movies">
+        {" "}
+        Movies Checked Out: {movies_checked_out_count}
+      </div>
+      <div className="select_customer">
+        <button onClick={onClicked}>
+          Select Customer
+        </button>
+      </div>
+    </section>;
 }
 
 Customer.propTypes = {
