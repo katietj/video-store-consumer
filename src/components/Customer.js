@@ -3,19 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types'
 
 const Customer = (props) => {
-const { id, name, movies_checked_out_count} = props;
+  const { id, name, movies_checked_out_count } = props;
 
-const onClicked = () => {
-  props.getCustomer(id, name);
-}
+  const onClicked = () => {
+    props.getCustomer(id, name);
+  }
 
-return(
-  <div>
-    <p> {name}</p>
-    <p> {movies_checked_out_count}</p>
-    <button onClick={onClicked}>Select Customer</button>
-  </div>
-)
+  return(
+    <div>
+      <p> {name}</p>
+      <p> {movies_checked_out_count}</p>
+      <button onClick={onClicked}>Select Customer</button>
+    </div>
+  )
 }
 
 Customer.propTypes = {

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import App from '../App';
 import Customers from './Customers';
+import Customer from './Customer';
 import Library from './Library';
 import Search from './Search';
 import NotFound from './NotFound';
@@ -16,8 +17,28 @@ class Router extends React.Component {
       customerId: null,
       currentMovieTitle: "",
       currentCustomerName: "",
-      msg: ""
+      msg: "",
+      customers: []
     };
+  }
+
+  getCustomerList = () => {
+    const URL = "http://localhost:3000/customers"
+    axios.get(URL)
+      .then((response) => {
+        const customers = response.data.map((info) => {
+          return <Customer key={info.id} {...info} getCustomer={this.getCustomer} />
+        })
+        this.setState({
+          customers,
+        })
+      })
+      .catch((error) => {
+
+        this.setState({
+          msg: error.message,
+        })
+      })
   }
 
   getMovie = (id, title) => {
@@ -50,16 +71,23 @@ class Router extends React.Component {
 
           axios.post(url, rental)
               .then(()=> {
-                console.log("Successfully added rental")
-                  // this.setState({
-                  //     msg: "Successfully added rental"
-                  // })
+                  // let customerList = [...this.state.customers];
+   
+                  // let customer = this.state.customers.find((person) => person.props.id === this.state.customerId);
+            
+
+                  this.setState({
+                      msg: "Successfully added rental",
+                      movieId: null,
+                      customerId: null,
+                      currentMovieTitle: "",
+                      currentCustomerName: "",
+                  })
               })
               .catch((error) => {
-                console.log(`Could not add: ${error.message}`)
-                  // this.setState({
-                  //     msg: error.message
-                  // })
+                  this.setState({
+                      msg: error.message
+                  })
               })
       }
 
@@ -101,11 +129,14 @@ class Router extends React.Component {
               </li>
             </ul>
           </nav>
+          <div>
+            {this.state.msg && <h3>{this.state.msg}</h3>}
+          </div>
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
             <Route path="/library" render={() => <Library getMovie={this.getMovie} />} />
-            <Route path="/customers" render={() => <Customers getCustomer={this.getCustomer} />} />
+            <Route path="/customers" render={() => <Customers getCustomerList={this.getCustomerList} customers={this.state.customers}/>} />
             <Route component={NotFound} />
           </Switch>
         </div>
