@@ -1,19 +1,20 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import Customer from "./Customer";
 import './Customers.css';
 
 const Customers = (props) => {
     return (
       <div>
         <h2 className="customer_title">Customers</h2>
-        {props.getCustomerList()}
-        {props.customers}
+        {props.customers.map(info => {
+          return <Customer key={info.id} {...info} getCustomer={props.getCustomer} />;
+        })}
       </div>
     )
 }
 
 Customers.propTypes = {
-  getCustomerList: PropTypes.func.isRequired,
   customers: PropTypes.array.isRequired,
 }
 

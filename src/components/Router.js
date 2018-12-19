@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import App from '../App';
 import Customers from './Customers';
-import Customer from './Customer';
 import Library from './Library';
 import Search from './Search';
 import NotFound from './NotFound';
@@ -23,23 +22,17 @@ class Router extends React.Component {
     };
   }
 
-  getCustomerList = () => {
-    const URL = "http://localhost:3000/customers"
-    axios.get(URL)
-      .then((response) => {
-        const customers = response.data.map((info) => {
-          return <Customer key={info.id} {...info} getCustomer={this.getCustomer} />
-        })
-        this.setState({
-          customers,
-        })
+  componentDidMount() {
+    const URL = "http://localhost:3000/customers";
+    axios
+      .get(URL)
+      .then(response => {
+        const customers = response.data;
+        this.setState({ customers });
       })
-      .catch((error) => {
-
-        this.setState({
-          msg: error.message,
-        })
-      })
+      .catch(error => {
+        this.setState({ msg: error.message });
+      });
   }
 
   getMovie = (id, title) => {
@@ -72,17 +65,19 @@ class Router extends React.Component {
 
           axios.post(url, rental)
               .then(()=> {
-                  // let customerList = [...this.state.customers];
 
-                  // let customer = this.state.customers.find((person) => person.props.id === this.state.customerId);
-
-
+                  const customers = [...this.state.customers];
+                  let customer = customers.find((person) => person.id === this.state.customerId);
+                  const customerIndex = customers.findIndex((person) => person.id === this.state.customerId);
+                  customer.movies_checked_out_count += 1;
+                  customers[customerIndex] = customer;
                   this.setState({
                       msg: "Successfully added rental",
                       movieId: null,
                       customerId: null,
                       currentMovieTitle: "",
                       currentCustomerName: "",
+                      customers,
                   })
               })
               .catch((error) => {
@@ -138,7 +133,7 @@ class Router extends React.Component {
             <Route exact path="/" component={App} />
             <Route path="/search" component={Search} />
             <Route path="/library" render={() => <Library getMovie={this.getMovie} />} />
-            <Route path="/customers" render={() => <Customers getCustomerList={this.getCustomerList} customers={this.state.customers} />} />
+            <Route path="/customers" render={() => <Customers customers={this.state.customers} getCustomer={this.getCustomer}/>} />
             <Route component={NotFound} />
           </Switch>
         </div>
