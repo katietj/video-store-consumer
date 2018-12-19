@@ -10,6 +10,10 @@
     margin-right: auto;
 }
 
+.movie_image_library {
+    width: 90%;
+}
+
 img {
     height: auto;
 }
@@ -39,10 +43,18 @@ img {
   .individual_movie {
     flex: 1 1 50%;
   }
+
+  .movie_image_library {
+    width: 65%;
+  }
 }
 
 @media all and (max-width:600px) {
   .individual_movie {
     flex-basis:100%;
+  }
+
+  .movie_image_library {
+    width: 40%;
   }
 }
