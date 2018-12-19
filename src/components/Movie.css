@@ -62,6 +62,7 @@ img {
     transition: all 0.4s ease-in-out 0s;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .individual_movie:hover .movie_description_container,
