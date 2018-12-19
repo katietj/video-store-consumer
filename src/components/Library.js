@@ -10,7 +10,6 @@ class Library extends React.Component {
 
       this.state = {
           movies: [],
-          errorMessage: ""
       }
   }
 
@@ -19,26 +18,27 @@ class Library extends React.Component {
       axios.get(URL)
       .then((response) => {
         const movies = response.data.map((info) => {
-          return <Movie key={info.external_id} path="/library" {...info} getMovie={this.props.getMovie}/>
+          return <Movie key={info.external_id} path="/library" {...info} getMovie={this.props.getMovie} setMessages={this.props.setMessages}/>
         })
         this.setState({
           movies,
         })
       })
       .catch((error) =>{
-
-        this.setState({
-          errorMessage: error.message,
-      })
+        this.props.setMessages(error.message);
+      //   this.setState({
+      //     errorMessage: error.message,
+      // })
     })
   }
+
 
   render() {
 
       return (
           <section>
               <h2 className="library_title">Library</h2>
-              {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+              {/* {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>} */}
               <section className="movies_container">
                 {this.state.movies}
               </section>
@@ -49,6 +49,7 @@ class Library extends React.Component {
 
 Library.propTypes = {
   getMovie: PropTypes.func.isRequired,
+  setMessages: PropTypes.func.isRequired,
 };
 
 export default Library;

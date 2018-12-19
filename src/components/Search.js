@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Movie from './Movie';
+import PropTypes from "prop-types";
 import './Search.css';
 
 class Search extends React.Component {
@@ -10,7 +11,6 @@ class Search extends React.Component {
         this.state = {
             query: '',
             movies: [],
-            errorMessage: "",
         }
     }
 
@@ -28,9 +28,10 @@ class Search extends React.Component {
                 this.setState({ movies: response.data });
             })
             .catch(error => {
-                this.setState({
-                    errorMessage: error.message
-                })
+                // this.setState({
+                //     errorMessage: error.message
+                // })
+                this.props.setMessages(error.message);
             });
     }
 
@@ -38,20 +39,20 @@ class Search extends React.Component {
     onQueryChange = (event) => {
         this.setState({
             query: event.target.value,
-            errorMessage: "",
+            // errorMessage: "",
         }, () => this.showMovies());
     }
 
     render() {
         const allMovies = this.state.movies.map((movie) => {
             return <Movie key={movie.external_id}
-                {...movie} path="/search"/>
+                {...movie} path="/search" setMessages={this.props.setMessages}/>
         });
 
         return (
             <div className="search_container">
                 <h2 className="search_title">Search</h2>
-                {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
+                {/* {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>} */}
                 <section className="search_bar">
                     <input name="search-bar" id="search" placeholder="Search" value={this.state.query} onChange={this.onQueryChange} />
                 </section>
@@ -63,6 +64,8 @@ class Search extends React.Component {
     }
 }
   
-
+Search.propTypes = {
+    setMessages: PropTypes.func.isRequired,
+};
 
 export default Search;

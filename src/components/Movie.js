@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import './Movie.css';
 
 class Movie extends React.Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
 
-        this.state = {
-            msg: ""
-        }
-    }
+    //     this.state = {
+    //         msg: ""
+    //     }
+    // }
 
     addToLibrary = () => {
         const url = `http://localhost:3000/movies`;
@@ -25,14 +25,16 @@ class Movie extends React.Component {
 
         axios.post(url, movie)
             .then(()=> {
-                this.setState({
-                    msg: "Successfully added movie"
-                })
+                this.props.setMessages("Successfully added movie");
+                // this.setState({
+                //     msg: "Successfully added movie"
+                // })
             })
-            .catch((error) => {
-                this.setState({
-                    msg: "Movie already exists in Library"
-                })
+            .catch(() => {
+                this.props.setMessages("Movie already exists in Library");
+                // this.setState({
+                //     msg: "Movie already exists in Library"
+                // })
             })
     }
 
@@ -42,21 +44,23 @@ class Movie extends React.Component {
 
     render() {
         const {title, image_url, path, overview} = this.props;
-        return <section className="individual_movie">
-            {this.state.msg && <h3>{this.state.msg}</h3>}
-            <img src={image_url} alt={title} className={path === "/library" ? "movie_image_library" : "movie_image_search"} />
-            {path === "/library" && <section className="movie_description_container" onClick={path === "/library" ? this.selectMovie : undefined}>
-                <div className="overview">
-                    <p>
-                        <strong>{title}</strong>
-                    </p>
-                    {overview}
-                </div>
-            </section>}
-            {path === "/search" && <button onClick={this.addToLibrary} className="movie_button">
-                Add to Library
+        return (
+            <section className="individual_movie">
+                {/* {this.state.msg && <h3>{this.state.msg}</h3>} */}
+                <img src={image_url} alt={title} className={path === "/library" ? "movie_image_library" : "movie_image_search"} />
+                {path === "/library" && <section className="movie_description_container" onClick={path === "/library" ? this.selectMovie : undefined}>
+                    <div className="overview">
+                        <p>
+                            <strong>{title}</strong>
+                        </p>
+                        {overview}
+                    </div>
+                </section>}
+                {path === "/search" && <button onClick={this.addToLibrary} className="movie_button">
+                    Add to Library
               </button>}
-          </section>;
+            </section>
+        )
     }
 }
 
@@ -70,6 +74,7 @@ Movie.propTypes = {
   getMovie: PropTypes.func,
   path: PropTypes.string.isRequired,
   movies: PropTypes.array,
+  setMessages: PropTypes.func.isRequired,
 };
 
 export default Movie;
