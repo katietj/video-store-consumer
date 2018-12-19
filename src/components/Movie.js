@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import './Movie.css';
 
 class Movie extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class Movie extends React.Component {
             })
             .catch((error) => {
                 this.setState({
-                    msg: error.message
+                    msg: "Movie already exists in Library"
                 })
             })
     }
@@ -41,13 +42,13 @@ class Movie extends React.Component {
 
     render() {
         const {title, image_url, path} = this.props;
-        return (
-            <div>
-                {this.state.msg && <h3>{this.state.msg}</h3>}
-                <img src={image_url} alt={title} />
-                {path === '/search' ? <button onClick={this.addToLibrary}>Add to Library</button> : <button onClick={this.selectMovie}>Select Movie</button> }
-            </div>
-        )
+        return <section className="individual_movie">
+            {this.state.msg && <h3>{this.state.msg}</h3>}
+            <img src={image_url} alt={title} className={path === '/library' ? "movie_image_library" : "movie_image_search"} onClick={path === '/library' ? this.selectMovie : undefined}/>
+            {path === "/search" && <button onClick={this.addToLibrary} className="movie_button">
+                Add to Library
+              </button>}
+          </section>;
     }
 }
 
@@ -60,6 +61,7 @@ Movie.propTypes = {
   image_url: PropTypes.string.isRequired,
   getMovie: PropTypes.func,
   path: PropTypes.string.isRequired,
+  movies: PropTypes.array,
 };
 
 export default Movie;

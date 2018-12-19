@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
+import './Library.css';
 
 class Library extends React.Component {
   constructor(props) {
@@ -35,12 +36,13 @@ class Library extends React.Component {
   render() {
 
       return (
-          <div>
-              <h2>Library</h2>
+          <section>
+              <h2 className="library_title">Library</h2>
               {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-              { this.state.movies }
-
-          </div>
+              <section className="movies_container">
+                {this.state.movies}
+              </section>
+          </section>
       )
   }
 }

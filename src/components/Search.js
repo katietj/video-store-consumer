@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Movie from './Movie';
+import './Search.css';
 
 class Search extends React.Component {
     constructor(props) {
@@ -48,13 +49,15 @@ class Search extends React.Component {
         });
 
         return (
-            <div>
-                <h2>Search</h2>
+            <div className="search_container">
+                <h2 className="search_title">Search</h2>
                 {this.state.errorMessage && <h3>{this.state.errorMessage}</h3>}
-                <section>
+                <section className="search_bar">
                     <input name="search-bar" id="search" placeholder="Search" value={this.state.query} onChange={this.onQueryChange} />
                 </section>
-                { allMovies }
+                <section className="movies_container">
+                    {allMovies}
+                </section>
             </div>
         )
     }
