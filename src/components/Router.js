@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import App from '../App';
 import Customers from './Customers';
 import Library from './Library';
 import Search from './Search';
-import NotFound from './NotFound';
 import axios from 'axios';
 import "./Router.css";
 
@@ -149,13 +148,10 @@ class Router extends React.Component {
               <button className="closeError"onClick={this.closeMessage}><strong>&#10007;</strong></button>
             </div>
           }
-          <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/search" render={() => <Search setMessages={this.setMessages} />} />
-            <Route path="/library" render={() => <Library getMovie={this.getMovie} setMessages={this.setMessages} />} />
-            <Route path="/customers" render={() => <Customers customers={this.state.customers} getCustomer={this.getCustomer} />} />
-            <Route component={NotFound} />
-          </Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/search" render={() => <Search setMessages={this.setMessages} />} />
+          <Route path="/library" render={() => <Library getMovie={this.getMovie} setMessages={this.setMessages} />} />
+          <Route path="/customers" render={() => <Customers customers={this.state.customers} getCustomer={this.getCustomer} />} />
         </div>
       </BrowserRouter>;
   }
