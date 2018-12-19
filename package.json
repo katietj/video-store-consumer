@@ -2,7 +2,7 @@
   "name": "video-store-consumer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://katietj.github.io/video-store-consumer/",
+  "homepage": "https://katie-alice-video-store.surge.sh/",
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
