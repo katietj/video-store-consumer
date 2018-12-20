@@ -14,7 +14,7 @@ class Library extends React.Component {
   }
 
   componentDidMount(){
-    const URL = "http://localhost:3000/movies"
+    const URL = "https://the-katie-alice-vs-api.herokuapp.com/movies";
       axios.get(URL)
       .then((response) => {
         const movies = response.data.map((info) => {

@@ -22,7 +22,7 @@ class Router extends React.Component {
   }
 
   componentDidMount() {
-    const URL = "http://localhost:3000/customers";
+    const URL = "https://the-katie-alice-vs-api.herokuapp.com/customers";
     axios
       .get(URL)
       .then(response => {
@@ -65,7 +65,7 @@ class Router extends React.Component {
       let dueDate = new Date();
       dueDate.setDate(dueDate.getDate() + 7);
       const { currentMovieTitle, customerId, movieId } = this.state;
-      const url = `http://localhost:3000/rentals/${currentMovieTitle}/check-out`;
+      const url = `https://the-katie-alice-vs-api.herokuapp.com/rentals/${currentMovieTitle}/check-out`;
 
       const rental = {
         movie_id: movieId,

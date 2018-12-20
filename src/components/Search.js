@@ -15,7 +15,7 @@ class Search extends React.Component {
     }
 
     showMovies = () => {
-        let url = `http://localhost:3000/movies`;
+        let url = `https://the-katie-alice-vs-api.herokuapp.com/movies`;
         const re = /^[A-Za-z0-9][A-Za-z0-9]*/i;
         
         if (this.state.query.trim().length !== 0 && this.state.query.match(re)) {

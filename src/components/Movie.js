@@ -5,7 +5,7 @@ import './Movie.css';
 
 class Movie extends React.Component {
     addToLibrary = () => {
-        const url = `http://localhost:3000/movies`;
+        const url = `https://the-katie-alice-vs-api.herokuapp.com/movies`;
         const {title, external_id, image_url, release_date, overview} = this.props
         const movie = {
             title,
