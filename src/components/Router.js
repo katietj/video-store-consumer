@@ -52,6 +52,7 @@ class Router extends React.Component {
     this.setState({
       msg
     });
+    setTimeout(() => this.setState({ msg: "" }), 2500);
   };
 
   closeMessage = () => {

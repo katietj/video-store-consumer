@@ -1,8 +1,8 @@
 .individual_movie {
-    flex: 1 0 25%;
-    position: relative;
-    padding: 1rem;
-    box-sizing: border-box;
+  flex: 0 0 25%;
+  position: relative;
+  padding: 1rem;
+  box-sizing: border-box;
 	display: inline-block;
 	overflow: hidden;
 	max-width: 100%;
@@ -85,7 +85,7 @@ img {
 
 @media all and (max-width:980px) {
   .individual_movie {
-    flex: 1 1 50%;
+    flex: 0 1 50%;
   }
 
   .movie_image_library {
