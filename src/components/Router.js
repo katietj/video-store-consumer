@@ -30,7 +30,7 @@ class Router extends React.Component {
         this.setState({ customers });
       })
       .catch(error => {
-        this.setState({ msg: error.message });
+        this.setMessages(error.message);
       });
   }
 
@@ -87,18 +87,16 @@ class Router extends React.Component {
           customer.movies_checked_out_count += 1;
           customers[customerIndex] = customer;
           this.setState({
-            msg: "Successfully added rental",
             movieId: null,
             customerId: null,
             currentMovieTitle: "",
             currentCustomerName: "",
             customers
           });
+          this.setMessages("Successfully added rental");
         })
         .catch(error => {
-          this.setState({
-            msg: error.message
-          });
+          this.setMessages(error.message);
         });
     }
   };
